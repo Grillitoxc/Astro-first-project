@@ -1,0 +1,47 @@
+---
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
+import "@fontsource/poppins/800.css";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root {
+    --dark-bg: #111111;
+    --light-bg: #f8f8f8;
+  }
+
+  @font-face {
+    font-family: "BeaufortforLOL-HeavyItalic";
+    src: url("/fonts/BeaufortforLOL-HeavyItalic.ttf");
+  }
+  @font-face {
+    font-family: "BeaufortforLOL-BoldItalic";
+    src: url("/fonts/BeaufortforLOL-BoldItalic.ttf");
+  }
+
+  * {
+    font-family: "Poppins", sans-serif;
+    background: var(--light-bg);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+</style>
