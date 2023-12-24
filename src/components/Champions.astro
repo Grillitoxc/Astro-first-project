@@ -1,0 +1,36 @@
+---
+import ChampionCard from "./ChampionCard.astro";
+
+// Fetching version data from Riot API
+const versions = await fetch(
+  "https://ddragon.leagueoflegends.com/api/versions.json"
+);
+const versionsData = await versions.json();
+
+// Fetching champion data with the latest version from Riot API
+const champions = await fetch(
+  `http://ddragon.leagueoflegends.com/cdn/${versionsData[0]}/data/en_US/champion.json`
+);
+const championsData = await champions.json();
+
+// Preparing champion data as an array
+const championsList = Object.values(championsData.data);
+---
+
+<div class="champion-cards-container">
+  {
+    championsList.map((champion) => (
+      <ChampionCard name={champion.name} image={champion.id} />
+    ))
+  }
+</div>
+
+<style>
+  .champion-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin: 40px auto;
+    max-width: 1400px;
+    justify-items: center;
+  }
+</style>

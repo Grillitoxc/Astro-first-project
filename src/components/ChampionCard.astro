@@ -1,0 +1,84 @@
+---
+const { name, image } = Astro.props;
+const nameUppercased = name.toUpperCase();
+---
+
+<div class="champion-card">
+  <div class="champion-card__image">
+    <img
+      src=`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${image}_0.jpg`
+      alt="Image of the loading screen of ${name}"
+    />
+  </div>
+  <div class="champion-card__name">
+    {nameUppercased}
+  </div>
+</div>
+
+<style>
+  .champion-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    width: 250px;
+    position: relative;
+  }
+
+  .champion-card::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 11%;
+    padding-top: 11%;
+    background-color: var(--light-bg);
+    transition: transform 0.5s ease 0s;
+    transform: translate(50%, -50%) rotate(45deg);
+  }
+
+  .champion-card__image {
+    height: 300px;
+    overflow: hidden;
+  }
+
+  img {
+    width: 300px;
+    object-fit: cover;
+    height: 470px;
+    transition: all 0.2s linear;
+  }
+
+  .champion-card__name {
+    background-color: #061c25;
+    width: 100%;
+    padding: 15px 20px;
+    color: #fff;
+    font-family: "BeaufortforLOL-HeavyItalic";
+    font-size: 20px;
+    letter-spacing: 2px;
+    transition: 0.3s ease;
+  }
+
+  .champion-card:hover {
+    cursor: pointer;
+  }
+
+  .champion-card:hover .champion-card__name {
+    padding-left: 30px;
+  }
+
+  .champion-card:hover img {
+    width: 285px;
+  }
+
+  .champion-card:hover .champion-card__name {
+    background-color: #006680;
+  }
+
+  .champion-card:hover::after {
+    transform: translate(100%, -100%) rotate(45deg);
+  }
+</style>
